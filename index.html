@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Musicflow</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        color: #333;
+      }
+      header {
+        background-color: #e74c3c;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .search-bar {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+      .search-bar input {
+        width: 70%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+      }
+      .search-bar button {
+        padding: 0.5rem 1rem;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+      }
+      .search-bar button:hover {
+        background-color: #27ae60;
+      }
+      .song-list {
+        margin-top: 1rem;
+      }
+      .song-item {
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .song-item:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      .song-item a {
+        text-decoration: none;
+        color: #333;
+      }
+      .song-item a:hover {
+        text-decoration: underline;
+      }
+      footer {
+        background-color: #95a5a6;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Musicflow</h1>
+      <p>Enjoy your favorite music anytime.</p>
+    </header>
+
+    <div class="container">
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search for a artist (search for an artist, not song)"
+        />
+        <button onclick="searchSongs()">Search</button>
+      </div>
+
+      <div id="results" class="song-list">
+        <!-- Results will be displayed here -->
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Musicflow. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function searchSongs() {
+        const query = document.getElementById("searchInput").value;
+        const resultsContainer = document.getElementById("results");
+        resultsContainer.innerHTML = "";
+
+        if (!query) {
+          resultsContainer.innerHTML = "<p>Please enter a search term.</p>";
+          return;
+        }
+
+        // Simulated search results
+        const songs = [
+          {
+            artist: "KSI",
+            title: "Thick of It",
+            url: "https://musicflow.onrender.com/ksi-thickofit.html",
+          },
+          {
+            artist: "Rick Astley",
+            title: "Never Gonna Give You Up",
+            url: "https://musicflow.onrender.com/rickastley-nevergonnagiveyouup.html",
+          },
+          {
+            artist: "Gorillaz",
+            title: "Feel Good Inc.",
+            url: "https://musicflow.onrender.com/gorillaz-feelgoodinc.html",
+          },
+          {
+            artist: "Bruno Mars",
+            title: "APT.",
+            url: "https://musicflow.onrender.com/rose&brunomars-apt.html",
+           
+          },
+          {
+            artist: "Bruno Mars",
+            title: "Die With a Smile",
+            url: "https://musicflow.onrender.com/ladygaga&brunomars-diewithasmile.html",
+          }, 
+          { 
+            artist: "Tyler The Creator",
+            title: "St. Chroma",
+            url: "https://musicflow.onrender.com/tylerthecreator-stchroma.html",
+          },
+          {
+            artist: "Tyler The Creator",
+            title: "Sticky",
+            url: "https://musicflow.onrender.com/tylerthecreator-sticky.html",
+          },
+          {
+        
+            artist: "Travis Scott",
+            title: "FE!N",
+            url: "https://musicflow.onrender.com/travisscott-fein.html",
+          },
+          ]
+
+        const filteredSongs = songs.filter(
+          (song) =>
+            song.artist.toLowerCase().includes(query.toLowerCase()) ||
+            song.title.toLowerCase().includes(query.toLowerCase())
+        );
+
+        if (filteredSongs.length === 0) {
+          resultsContainer.innerHTML = "<p>No results found.</p>";
+          return;
+        }
+
+        filteredSongs.forEach((song) => {
+          const songItem = document.createElement("div");
+          songItem.className = "song-item";
+          songItem.innerHTML = `<a href='${song.url}' target='_blank'>${song.artist} - ${song.title}</a>`;
+          resultsContainer.appendChild(songItem);
+        });
+      }
+    </script>
+  </body>
+</html>
